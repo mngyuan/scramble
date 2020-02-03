@@ -57,7 +57,6 @@ const ScrambleC = props => {
 
 const Scramble = props => {
   const cs = Array.from(props.s).map((c, i) => <ScrambleC c={c} key={i} />);
-  console.log(cs);
   return <span>{cs}</span>;
 };
 

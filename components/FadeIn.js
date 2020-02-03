@@ -5,7 +5,9 @@ const FadeIn = props => {
   const {delay = 0, children} = props;
   const [delayPassed, setDelayPassed] = useState(delay === 0);
   if (delay !== 0) {
-    useEffect(() => setTimeout(() => setDelayPassed(true), delay), [delay]);
+    useEffect(() => {
+      setTimeout(() => setDelayPassed(true), delay);
+    }, [delay]);
   }
 
   return (
