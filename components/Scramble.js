@@ -48,6 +48,7 @@ const ScrambleC = props => {
         {`
           span {
             opacity: ${c === props.c ? 1.0 : 0.5};
+            word-break: ${' \n\t'.includes(props.c) ? 'break-all' : 'initial'};
           }
         `}
       </style>

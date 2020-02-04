@@ -1,12 +1,23 @@
 import FadeIn from './FadeIn';
 
-const DELAY_AMT = 300;
+const DELAY_STEP = 300;
 
-const FadeInGroup = props =>
-  props.children.map((node, i) => (
-    <FadeIn delay={i * (props.delayAmount || DELAY_AMT)} key={i}>
-      {node}
-    </FadeIn>
-  ));
+const FadeInGroup = props => {
+  let curDelay = 0;
+  return props.children.map((node, i) => {
+    curDelay += node.props.delayInit || props.delayStep || DELAY_STEP;
+    return (
+      <FadeIn
+        delay={
+          (props.delayInit || 0) +
+          curDelay
+        }
+        key={i}
+      >
+        {node}
+      </FadeIn>
+    );
+  });
+};
 
 export default FadeInGroup;
