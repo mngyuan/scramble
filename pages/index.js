@@ -51,13 +51,13 @@ const Background = props => {
             left: 20vw;
             width: 60vw;
             height: 60vh;
+            overflow: visible;
           }
         `}</style>
         <style jsx global>{`
           .visualBg {
             object-fit: cover;
             width: 100%;
-            height: 100%;
           }
         `}</style>
       </>
@@ -93,13 +93,13 @@ const Background = props => {
             left: 20vw;
             width: 60vw;
             height: 60vh;
+            overflow: visible;
           }
         `}</style>
         <style jsx global>{`
           .visualBg {
             object-fit: cover;
             width: 100%;
-            height: 100%;
           }
         `}</style>
       </>
@@ -167,13 +167,17 @@ const Background = props => {
 export default class Index extends React.Component {
   state = {
     viewing: 'landing',
+    clicked: false,
   };
 
   render() {
     return (
       <>
         <Background viewing={this.state.viewing} />
-        <div className="centered">
+        <div
+          className="centered"
+          onPointerDown={() => this.setState({clicked: true})}
+        >
           <FadeInGroup>
             <Scramble s="Hello, my name is Kevin Lee." />
             <br />
@@ -184,7 +188,12 @@ export default class Index extends React.Component {
               <Scramble s="I'm passionate about " />
               <span
                 className="primary"
-                onPointerDown={() => this.setState({viewing: 'visual'})}
+                onPointerOver={() =>
+                  this.state.clicked ? this.setState({viewing: 'visual'}) : null
+                }
+                onPointerDown={() =>
+                  this.setState({viewing: 'visual', clicked: true})
+                }
                 onPointerOut={() => this.setState({viewing: 'landing'})}
               >
                 visual storytelling
@@ -192,7 +201,12 @@ export default class Index extends React.Component {
               <Scramble s=", " />
               <span
                 className="primary"
-                onPointerDown={() => this.setState({viewing: 'web'})}
+                onPointerOver={() =>
+                  this.state.clicked ? this.setState({viewing: 'web'}) : null
+                }
+                onPointerDown={() =>
+                  this.setState({viewing: 'web', clicked: true})
+                }
                 onPointerOut={() => this.setState({viewing: 'landing'})}
               >
                 next-gen frontend web tech
@@ -200,7 +214,12 @@ export default class Index extends React.Component {
               <Scramble s=", and " />
               <span
                 className="primary"
-                onPointerDown={() => this.setState({viewing: 'music'})}
+                onPointerOver={() =>
+                  this.state.clicked ? this.setState({viewing: 'music'}) : null
+                }
+                onPointerDown={() =>
+                  this.setState({viewing: 'music', clicked: true})
+                }
                 onPointerOut={() => this.setState({viewing: 'landing'})}
               >
                 music production
