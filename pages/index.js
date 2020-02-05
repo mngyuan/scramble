@@ -147,8 +147,7 @@ const Background = props => {
       <div className="hidden">{[...visualBgs, ...webBgs, ...musicBgs]}</div>
       <style jsx>{`
         .hidden {
-          opacity: 0;
-          position: absolute;
+          display: none;
         }
       `}</style>
     </>
@@ -230,7 +229,7 @@ export default class Index extends React.Component {
             <br />
             <br />
             <div>
-              <a>Resume</a>
+              <a href="/Kevin Lee professional resume.pdf">Resume</a>
               <Scramble s=" " />
               <a href="mailto:me@mngyuan.com">me [at] mngyuan.com</a>
             </div>
