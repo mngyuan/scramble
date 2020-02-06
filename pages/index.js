@@ -39,6 +39,33 @@ const Background = props => {
       playsInline
       autoPlay={props.viewing === 'visual'}
     />,
+    <img
+      className="visualBg"
+      src="/Screen Shot 2019-11-19 at 6.13.48 PM.jpeg"
+    />,
+    <img className="visualBg" src="/scan.jpg" />,
+    <img
+      className="visualBg"
+      src="/how to have friends and still feel alone for web-05.png"
+    />,
+    <video
+      className="visualBg"
+      src="/stand still excerpt.mp4"
+      type="video/mp4"
+      preload="auto"
+      loop
+      playsInline
+      autoPlay={props.viewing === 'visual'}
+    />,
+    <video
+      className="visualBg"
+      src="/bw_6 excerpt.mp4"
+      type="video/mp4"
+      preload="auto"
+      loop
+      playsInline
+      autoPlay={props.viewing === 'visual'}
+    />,
   ];
   const visualBg =
     props.viewing === 'visual' ? (
@@ -113,6 +140,10 @@ const Background = props => {
     />,
     <AudioPlayer
       src="/19-04_abeepitidybeepbapboobee.mp3"
+      autoPlay={props.viewing === 'music'}
+    />,
+    <AudioPlayer
+      src="/20-07 PO-20 ARCADE.mp3"
       autoPlay={props.viewing === 'music'}
     />,
   ];
