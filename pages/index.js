@@ -305,8 +305,6 @@ export default class Index extends React.Component {
             background: ${PRIMARY_COLOR};
             color: white;
           }
-
-          @import url('https://fonts.googleapis.com/css?family=Space+Mono&display=swap');
         `}</style>
       </>
     );
