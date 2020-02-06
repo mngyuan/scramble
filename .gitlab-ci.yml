@@ -11,8 +11,10 @@ pages:
     - npm install
     - npm run build
     - npm run export
+    - mv public _public # nextjs uses the public folder
+    - mv out public
   artifacts:
     paths:
-    - out
+    - public
   only:
     - master
