@@ -1,9 +1,6 @@
 import Scramble from '../components/Scramble';
 import FadeInGroup from '../components/FadeInGroup';
 
-const PRIMARY_COLOR = '#ED1C24';
-const DEFAULT_BG = 'white';
-
 let randPickNew;
 (() => {
   let last;
@@ -17,58 +14,49 @@ let randPickNew;
   };
 })();
 
-const AudioPlayer = props => (
-  <>
-    <span>now playing: {props.src}</span>
-    <audio {...props} />
-  </>
-);
+const okf = o => Object.keys(o).filter(k => o[k]);
+const classNames = o => okf(o).join(' ');
+
+const PRIMARY_COLOR = '#ED1C24';
+const DEFAULT_BG = 'white';
+
+const MUSIC_BGS = [
+  '/first.mp3',
+  '/flight1.mp3',
+  '/20-05_bu_se_liang.mp3',
+  '/19-04_abeepitidybeepbapboobee.mp3',
+  '/20-07 PO-20 ARCADE.mp3',
+];
+const VISUAL_BGS = [
+  '/000025.jpg',
+  '/S398787-R3-E074.jpg',
+  '/KYLIN-excerpt.mp4',
+  '/Screen Shot 2019-11-19 at 6.13.48 PM.jpeg',
+  '/scan.jpg',
+  '/how to have friends and still feel alone for web-05.png',
+  '/stand still excerpt.mp4',
+  '/bw_6 excerpt.mp4',
+];
+const WEB_BGS = ['/oww2.mp4', '/oww3.mp4'];
 
 const Background = props => {
-  const visualBgs = [
-    <img className="visualBg" src="/000025.jpg" />,
-    <img className="visualBg" src="/S398787-R3-E074.jpg" />,
-    <video
-      className="visualBg"
-      src="/KYLIN-excerpt.mp4"
-      type="video/mp4"
-      preload="auto"
-      loop
-      playsInline
-      autoPlay={props.viewing === 'visual'}
-    />,
-    <img
-      className="visualBg"
-      src="/Screen Shot 2019-11-19 at 6.13.48 PM.jpeg"
-    />,
-    <img className="visualBg" src="/scan.jpg" />,
-    <img
-      className="visualBg"
-      src="/how to have friends and still feel alone for web-05.png"
-    />,
-    <video
-      className="visualBg"
-      src="/stand still excerpt.mp4"
-      type="video/mp4"
-      preload="auto"
-      loop
-      playsInline
-      autoPlay={props.viewing === 'visual'}
-    />,
-    <video
-      className="visualBg"
-      src="/bw_6 excerpt.mp4"
-      type="video/mp4"
-      preload="auto"
-      loop
-      playsInline
-      autoPlay={props.viewing === 'visual'}
-    />,
-  ];
-  const visualBg =
-    props.viewing === 'visual' ? (
-      <>
-        <div>{randPickNew(visualBgs)}</div>
+  const curVisualBgSrc =
+    props.viewing === 'visual' ? randPickNew(VISUAL_BGS) : null;
+  const curWebBgSrc = props.viewing === 'web' ? randPickNew(WEB_BGS) : null;
+  const curMusicBgSrc =
+    props.viewing === 'music' ? randPickNew(MUSIC_BGS) : null;
+  const curVisualBg = curVisualBgSrc ? (
+    ['mp4'].includes(curVisualBgSrc.split('.').slice(-1)[0]) ? (
+      <div>
+        <video
+          className="visualBg"
+          src={curVisualBgSrc}
+          type="video/mp4"
+          preload="auto"
+          loop
+          playsInline
+          autoPlay
+        />
         <style jsx>{`
           div {
             position: fixed;
@@ -78,39 +66,18 @@ const Background = props => {
             height: 60vh;
             overflow: visible;
           }
-        `}</style>
-        <style jsx global>{`
+          .hidden {
+            display: none;
+          }
           .visualBg {
             object-fit: cover;
             width: 100%;
           }
         `}</style>
-      </>
-    ) : null;
-  const webBgs = [
-    <video
-      className="visualBg"
-      src="/oww2.mp4"
-      type="video/mp4"
-      preload="auto"
-      loop
-      playsInline
-      autoPlay={props.viewing === 'web'}
-    />,
-    <video
-      className="visualBg"
-      src="/oww3.mp4"
-      type="video/mp4"
-      preload="auto"
-      loop
-      playsInline
-      autoPlay={props.viewing === 'web'}
-    />,
-  ];
-  const webBg =
-    props.viewing === 'web' ? (
-      <>
-        <div>{randPickNew(webBgs)}</div>
+      </div>
+    ) : (
+      <div>
+        <img src={curVisualBgSrc} className="visualBg" />
         <style jsx>{`
           div {
             position: fixed;
@@ -120,76 +87,71 @@ const Background = props => {
             height: 60vh;
             overflow: visible;
           }
-        `}</style>
-        <style jsx global>{`
+          .hidden {
+            display: none;
+          }
           .visualBg {
             object-fit: cover;
             width: 100%;
           }
         `}</style>
-      </>
-    ) : null;
-  const musicBgs = [
-    <AudioPlayer src="/first.mp3" autoPlay={props.viewing === 'music'} />,
-    <AudioPlayer src="/flight1.mp3" autoPlay={props.viewing === 'music'} />,
-    <AudioPlayer
-      src="/20-05_bu_se_liang.mp3"
-      autoPlay={props.viewing === 'music'}
-    />,
-    <AudioPlayer
-      src="/19-04_abeepitidybeepbapboobee.mp3"
-      autoPlay={props.viewing === 'music'}
-    />,
-    <AudioPlayer
-      src="/20-07 PO-20 ARCADE.mp3"
-      autoPlay={props.viewing === 'music'}
-    />,
-  ];
-  const musicBg =
-    props.viewing === 'music' ? (
-      <>
-        <div>{randPickNew(musicBgs)}</div>
-        <style jsx>{`
-          div {
-            position: fixed;
-            top: 20vh;
-            left: 20vw;
-            width: 60vw;
-            height: 60vh;
-
-            text-align: center;
-            color: white;
-          }
-        `}</style>
-        <style jsx global>{`
-          .visualBg {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-          }
-        `}</style>
-      </>
-    ) : null;
-
-  const noBg = (
-    <>
-      <div className="hidden">{[...visualBgs, ...webBgs, ...musicBgs]}</div>
+      </div>
+    )
+  ) : null;
+  const curWebBg = curWebBgSrc ? (
+    <div>
+      <video
+        src={curWebBgSrc}
+        className="visualBg"
+        type="video/mp4"
+        preload="auto"
+        loop
+        playsInline
+        muted
+        autoPlay
+      />
       <style jsx>{`
+        div {
+          position: fixed;
+          top: 20vh;
+          left: 20vw;
+          width: 60vw;
+          height: 60vh;
+          overflow: visible;
+        }
+        .hidden {
+          display: none;
+        }
+        .visualBg {
+          object-fit: cover;
+          width: 100%;
+        }
+      `}</style>
+    </div>
+  ) : null;
+  const curMusicBg = curMusicBgSrc ? (
+    <div>
+      <span>now playing: {curMusicBgSrc}</span>
+      <audio src={curMusicBgSrc} preload="auto" loop autoPlay />
+      <style jsx>{`
+        div {
+          position: fixed;
+          top: 20vh;
+          left: 20vw;
+          width: 60vw;
+          height: 60vh;
+
+          text-align: center;
+          color: white;
+        }
         .hidden {
           display: none;
         }
       `}</style>
-    </>
-  );
+    </div>
+  ) : null;
 
-  return (
-    <>
-      {visualBg}
-      {webBg}
-      {musicBg}
-      {noBg}
-    </>
-  );
+  return curVisualBg || curWebBg || curMusicBg;
 };
 
 export default class Index extends React.Component {
@@ -197,6 +159,12 @@ export default class Index extends React.Component {
     viewing: 'landing',
     clicked: false,
   };
+
+  componentDidMount() {
+    MUSIC_BGS.forEach(src => (new Audio().src = src));
+    VISUAL_BGS.forEach(src => (new Image().src = src));
+    WEB_BGS.forEach(src => (new Image().src = src));
+  }
 
   render() {
     return (
