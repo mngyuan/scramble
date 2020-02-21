@@ -199,6 +199,7 @@ export default class Index extends React.Component {
           <link rel="manifest" href="/site.webmanifest" />
           {VISUAL_BGS.map(src => (
             <link
+              key={src}
               rel="preload"
               href={src}
               as={
@@ -214,10 +215,22 @@ export default class Index extends React.Component {
             />
           ))}
           {WEB_BGS.map(src => (
-            <link rel="preload" href={src} as="video" type="video/mp4" />
+            <link
+              key={src}
+              rel="preload"
+              href={src}
+              as="video"
+              type="video/mp4"
+            />
           ))}
           {MUSIC_BGS.map(src => (
-            <link rel="preload" href={src} as="audio" type="audio/mpeg" />
+            <link
+              key={src}
+              rel="preload"
+              href={src}
+              as="audio"
+              type="audio/mpeg"
+            />
           ))}
         </Head>
         <Background viewing={this.state.viewing} />
