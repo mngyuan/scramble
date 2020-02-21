@@ -1,3 +1,6 @@
+import 'intersection-observer';
+import Head from 'next/head';
+
 import Scramble from '../components/Scramble';
 import FadeInGroup from '../components/FadeInGroup';
 
@@ -21,23 +24,23 @@ const PRIMARY_COLOR = '#ED1C24';
 const DEFAULT_BG = 'white';
 
 const MUSIC_BGS = [
-  '/first.mp3',
-  '/flight1.mp3',
-  '/20-05_bu_se_liang.mp3',
-  '/19-04_abeepitidybeepbapboobee.mp3',
-  '/20-07 PO-20 ARCADE.mp3',
+  '/media/first.mp3',
+  '/media/flight1.mp3',
+  '/media/20-05_bu_se_liang.mp3',
+  '/media/19-04_abeepitidybeepbapboobee.mp3',
+  '/media/20-07 PO-20 ARCADE.mp3',
 ];
 const VISUAL_BGS = [
-  '/000025.jpg',
-  '/S398787-R3-E074.jpg',
-  '/KYLIN-excerpt.mp4',
-  '/Screen Shot 2019-11-19 at 6.13.48 PM.jpeg',
-  '/scan.jpg',
-  '/how to have friends and still feel alone for web-05.png',
-  '/stand still excerpt.mp4',
-  '/bw_6 excerpt.mp4',
+  '/media/000025.jpg',
+  '/media/S398787-R3-E074.jpg',
+  '/media/KYLIN-excerpt.mp4',
+  '/media/Screen Shot 2019-11-19 at 6.13.48 PM.jpeg',
+  '/media/scan.jpg',
+  '/media/how to have friends and still feel alone for web-05.png',
+  '/media/stand still excerpt.mp4',
+  '/media/bw_6 excerpt.mp4',
 ];
-const WEB_BGS = ['/oww2.mp4', '/oww3.mp4'];
+const WEB_BGS = ['/media/oww2.mp4', '/media/oww3.mp4'];
 
 const Background = props => {
   const curVisualBgSrc =
@@ -169,6 +172,54 @@ export default class Index extends React.Component {
   render() {
     return (
       <>
+        <Head>
+          <title>@mngyuan Kevin Lee</title>
+          <meta
+            property="og:description"
+            content="Kevin @mngyuan Lee, graphic designer and developer"
+          />
+          <meta property="og:title" content="@mngyuan Kevin Lee" />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+          <link rel="manifest" href="/site.webmanifest" />
+          {VISUAL_BGS.map(src => (
+            <link
+              rel="preload"
+              href={src}
+              as={
+                ['mp4'].includes(src.split('.').slice(-1)[0])
+                  ? 'video'
+                  : 'image'
+              }
+              type={
+                ['mp4'].includes(src.split('.').slice(-1)[0])
+                  ? 'video/mp4'
+                  : 'image/jpeg'
+              }
+            />
+          ))}
+          {WEB_BGS.map(src => (
+            <link rel="preload" href={src} as="video" type="video/mp4" />
+          ))}
+          {MUSIC_BGS.map(src => (
+            <link rel="preload" href={src} as="audio" type="audio/mpeg" />
+          ))}
+        </Head>
         <Background viewing={this.state.viewing} />
         <div
           className="centered"
