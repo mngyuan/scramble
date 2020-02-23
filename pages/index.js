@@ -284,7 +284,7 @@ export default class Index extends React.Component {
               >
                 music production
               </span>
-              <Scramble s=". I'm currently looking full-time and contract software or software/design hybrid roles." />
+              <Scramble s=". I'm currently looking for new opportunities - freelance web/graphic design and full time software and software/design hybrid roles." />
             </div>
             <br />
             <br />
