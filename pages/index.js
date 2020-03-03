@@ -1,5 +1,3 @@
-import 'intersection-observer';
-
 import Scramble from '../components/Scramble';
 import FadeInGroup from '../components/FadeInGroup';
 

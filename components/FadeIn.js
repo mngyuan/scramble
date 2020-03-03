@@ -1,3 +1,4 @@
+import 'intersection-observer';
 import React, {useState, useEffect} from 'react';
 import {InView} from 'react-intersection-observer';
 
