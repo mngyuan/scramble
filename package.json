@@ -13,14 +13,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^9.8.0",
     "babel-eslint": "^10.0.3",
     "intersection-observer": "^0.7.0",
     "js-yaml-loader": "^1.2.2",
     "next": "^9.2.1",
+    "postcss-import": "^12.0.1",
     "prettier": "^2.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-intersection-observer": "^8.25.2"
+    "react-intersection-observer": "^8.25.2",
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -39,5 +42,6 @@
     "singleQuote": true,
     "trailingComma": "all",
     "bracketSpacing": false
-  }
+  },
+  "browserslist": "> 0.5%, last 2 versions, last 3 iOS major versions, Firefox ESR, not dead, cover 99.5% in US"
 }
