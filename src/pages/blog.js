@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 
 import POSTS from '../blog.yaml';
 
-const Blog = props => (
+const Blog = (props) => (
   <Layout>
     <ul>
       <FadeInGroup>

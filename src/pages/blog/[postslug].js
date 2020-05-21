@@ -30,7 +30,7 @@ const Post = () => {
         <article>
           <h1 className="post-title">{post.name}</h1>
           <h3 className="post-date">{post.date}</h3>
-          {post.content.map(block => (
+          {post.content.map((block) => (
             <Block block={block} />
           ))}
         </article>
@@ -39,7 +39,7 @@ const Post = () => {
         <title key="title">{post.name} | @mngyuan</title>
         <meta
           property="og:description"
-          content={post.content.find(block => block.type === 'text').content}
+          content={post.content.find((block) => block.type === 'text').content}
           key="og-description"
         />
         <meta property="og:title" content={post.name} key="og-title" />

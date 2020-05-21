@@ -2,7 +2,7 @@ import 'intersection-observer';
 import React, {useState, useEffect} from 'react';
 import {InView} from 'react-intersection-observer';
 
-const FadeIn = props => {
+const FadeIn = (props) => {
   const {delay = 0, children, timeLen = 600, disabled = false} = props;
   if (disabled) {
     return props.children;
