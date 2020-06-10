@@ -1,5 +1,6 @@
 import React from 'react';
 import App from 'next/app';
+import {withTina} from 'tinacms';
 import '../css/tailwind.css';
 
 class MyApp extends App {
@@ -9,4 +10,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default withTina(MyApp);

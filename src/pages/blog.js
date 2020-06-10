@@ -1,23 +1,36 @@
+import Head from 'next/head';
+import Link from 'next/link';
 import FadeInGroup from '../components/FadeInGroup';
 import Layout from '../components/Layout';
+import {getAllPosts} from '../lib/api';
 
-import POSTS from '../blog.yaml';
-
-const Blog = (props) => (
+const Blog = ({allPosts}) => (
   <Layout>
-    <ul>
-      <FadeInGroup>
-        {Object.entries(POSTS).map(([postslug, post]) => (
-          <div className="post">
-            <h1 className="post-title">{post.name}</h1>
-            <h2 className="post-date">{post.date}</h2>
-          </div>
-        ))}
-      </FadeInGroup>
-    </ul>
+    <Head>
+      <title>mngyuan blog</title>
+    </Head>
+    <div className="flex flex-row">
+      {allPosts.map((post) => (
+        <div className="m-24 w-6/12">
+          <Link as={`/blog/${post.slug}`} href="/blog/[slug]">
+            <a className="hover:underline">
+              <h2 className="font-bold">{post.title}</h2>
+            </a>
+          </Link>
+          <h3 className="text-gray mb-6">{post.date}</h3>
+          <p>{post.excerpt}</p>
+        </div>
+      ))}
+    </div>
   </Layout>
 );
 
-console.log(POSTS);
+export async function getStaticProps() {
+  return {
+    props: {
+      allPosts: getAllPosts(['title', 'date', 'slug', 'excerpt', 'coverImage']),
+    },
+  };
+}
 
 export default Blog;
