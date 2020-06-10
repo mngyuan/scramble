@@ -7,6 +7,7 @@ import {MarkdownFieldPlugin} from 'react-tinacms-editor';
 import {getPostBySlug, getAllPosts} from '../../lib/api';
 import markdownToHtml from '../../lib/markdownToHtml';
 import Layout from '../../components/Layout';
+import DateFormatter from '../../components/DateFormatter';
 
 import markdownStyles from './markdown-styles.module.css';
 
@@ -56,7 +57,7 @@ export default function Post({post: initialPost, morePosts, preview}) {
               <title>{post.title} | mngyuan blog</title>
             </Head>
             <h1>{post.title}</h1>
-            <time>{post.date}</time>
+            <DateFormatter dateString={post.date} />
             <div className="max-w-2xl mx-auto">
               <div
                 className={markdownStyles['markdown']}

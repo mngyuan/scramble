@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import FadeInGroup from '../components/FadeInGroup';
 import Layout from '../components/Layout';
+import DateFormatter from '../components/DateFormatter';
 import {getAllPosts} from '../lib/api';
 
 const Blog = ({allPosts}) => (
@@ -17,7 +17,9 @@ const Blog = ({allPosts}) => (
               <h2 className="font-bold">{post.title}</h2>
             </a>
           </Link>
-          <h3 className="text-gray mb-6">{post.date}</h3>
+          <h3 className="text-gray mb-6">
+            <DateFormatter dateString={post.date} />
+          </h3>
           <p>{post.excerpt}</p>
         </div>
       ))}
