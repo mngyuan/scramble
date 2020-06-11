@@ -2,8 +2,10 @@ import {useState, useEffect, useMemo} from 'react';
 import {useRouter} from 'next/router';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
-import {useForm, usePlugin, usePlugins} from 'tinacms';
+import {useForm, usePlugins} from 'tinacms';
 import {MarkdownFieldPlugin} from 'react-tinacms-editor';
+import {markdownForm} from 'next-tinacms-markdown';
+import ReactMarkdown from 'react-markdown';
 import {getPostBySlug, getAllPosts} from '../../lib/api';
 import markdownToHtml from '../../lib/markdownToHtml';
 import Layout from '../../components/Layout';
@@ -11,39 +13,11 @@ import DateFormatter from '../../components/DateFormatter';
 
 import markdownStyles from './markdown-styles.module.css';
 
-export default function Post({post: initialPost, morePosts, preview}) {
+function Post({markdownFile}) {
   const router = useRouter();
-  const formConfig = {
-    id: initialPost.slug,
-    label: 'Blog Post',
-    initialValues: initialPost,
-    onSubmit: (values) => {
-      alert(`Submitting ${values.title}`);
-    },
-    fields: [
-      {
-        name: 'title',
-        label: 'Post Title',
-        component: 'text',
-      },
-      {
-        name: 'rawMarkdownBody',
-        label: 'Content',
-        component: 'markdown',
-      },
-    ],
-  };
-  const [post, form] = useForm(formConfig);
-  usePlugin(form);
-  usePlugins(MarkdownFieldPlugin);
-  const [htmlContent, setHtmlContent] = useState(post.content);
-  const initialContent = useMemo(() => post.rawMarkdownBody, []);
-  useEffect(() => {
-    if (initialContent == post.rawMarkdownBody) return;
-    markdownToHtml(post.rawMarkdownBody).then(setHtmlContent);
-  }, [post.rawMarkdownBody]);
+  usePlugins([MarkdownFieldPlugin]);
 
-  if (!router.isFallback && !post?.slug) {
+  if (!router.isFallback && !markdownFile?.frontmatter?.slug) {
     return <ErrorPage statusCode={404} />;
   }
   return (
@@ -54,15 +28,12 @@ export default function Post({post: initialPost, morePosts, preview}) {
         <>
           <article className="mb-32">
             <Head>
-              <title>{post.title} | mngyuan blog</title>
+              <title>{markdownFile.frontmatter.title} | mngyuan blog</title>
             </Head>
-            <h1>{post.title}</h1>
-            <DateFormatter dateString={post.date} />
+            <h1>{markdownFile.frontmatter.title}</h1>
+            <DateFormatter dateString={markdownFile.frontmatter.date} />
             <div className="max-w-2xl mx-auto">
-              <div
-                className={markdownStyles['markdown']}
-                dangerouslySetInnerHTML={{__html: htmlContent}}
-              />
+              <ReactMarkdown>{markdownFile.markdownBody}</ReactMarkdown>
             </div>
           </article>
         </>
@@ -71,36 +42,28 @@ export default function Post({post: initialPost, morePosts, preview}) {
   );
 }
 
+const formOptions = {};
+
+export default markdownForm(Post, formOptions);
+
 export async function getStaticProps({params}) {
-  const post = getPostBySlug(params.slug, [
-    'title',
-    'date',
-    'slug',
-    'content',
-    'ogImage',
-    'coverImage',
-  ]);
-  const content = await markdownToHtml(post.content || '');
+  const markdownFile = await getPostBySlug(params.slug);
 
   return {
     props: {
-      post: {
-        ...post,
-        content,
-        rawMarkdownBody: post.content,
-      },
+      markdownFile,
     },
   };
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(['slug']);
+  const posts = await getAllPosts();
 
   return {
-    paths: posts.map((posts) => {
+    paths: posts.map((post) => {
       return {
         params: {
-          slug: posts.slug,
+          slug: post.frontmatter.slug,
         },
       };
     }),

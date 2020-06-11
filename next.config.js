@@ -1,14 +1,14 @@
 module.exports = {
   exportTrailingSlash: true,
-  exportPathMap: function() {
+  exportPathMap: function () {
     return {
       '/': {page: '/'},
     };
   },
-  webpack: function(config) {
+  webpack: function (config) {
     config.module.rules.push({
-      test: /\.ya?ml$/,
-      use: 'js-yaml-loader',
+      test: /\.md$/,
+      use: 'raw-loader',
     });
     return config;
   },

@@ -11,16 +11,16 @@ const Blog = ({allPosts}) => (
     </Head>
     <div className="flex flex-row">
       {allPosts.map((post) => (
-        <div className="m-24 w-6/12">
-          <Link as={`/blog/${post.slug}`} href="/blog/[slug]">
+        <div className="m-24 w-6/12" key={post.slug}>
+          <Link as={`/blog/${post.frontmatter.slug}`} href="/blog/[slug]">
             <a className="hover:underline">
-              <h2 className="font-bold">{post.title}</h2>
+              <h2 className="font-bold">{post.frontmatter.title}</h2>
             </a>
           </Link>
           <h3 className="text-gray mb-6">
-            <DateFormatter dateString={post.date} />
+            <DateFormatter dateString={post.frontmatter.date} />
           </h3>
-          <p>{post.excerpt}</p>
+          <p>{post.frontmatter.excerpt}</p>
         </div>
       ))}
     </div>
@@ -30,7 +30,7 @@ const Blog = ({allPosts}) => (
 export async function getStaticProps() {
   return {
     props: {
-      allPosts: getAllPosts(['title', 'date', 'slug', 'excerpt', 'coverImage']),
+      allPosts: await getAllPosts(),
     },
   };
 }

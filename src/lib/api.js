@@ -1,43 +1,29 @@
 import fs from 'fs';
-import {join} from 'path';
 import matter from 'gray-matter';
-
-const postsDirectory = join(process.cwd(), 'src/_posts');
+import glob from 'glob';
 
 export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+  return glob
+    .sync('src/_posts/**/*.md')
+    .map((path) => path.split('/').slice(-1)[0].split('.')[0]);
 }
 
-export function getPostBySlug(slug, fields = []) {
-  const realSlug = slug.replace(/\.md$/, '');
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const {data, content} = matter(fileContents);
+export async function getPostBySlug(slug) {
+  const importedData = await import(`../_posts/${slug}.md`);
+  const data = matter(importedData.default);
 
-  const items = {};
-
-  // Ensure only the minimal needed data is exposed
-  fields.forEach((field) => {
-    if (field === 'slug') {
-      items[field] = realSlug;
-    }
-    if (field === 'content') {
-      items[field] = content;
-    }
-
-    if (data[field]) {
-      items[field] = data[field];
-    }
-  });
-
-  return items;
+  return {
+    fileRelativePath: `src/_posts/${slug}.md`,
+    frontmatter: data.data,
+    markdownBody: data.content,
+  };
 }
 
-export function getAllPosts(fields = []) {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? '-1' : '1'));
-  return posts;
+export async function getAllPosts() {
+  const slugs = await getPostSlugs();
+  const posts = await Promise.all(slugs.map((slug) => getPostBySlug(slug)));
+  // sort posts by date in descending order
+  return posts.sort((post1, post2) =>
+    post1.frontmatter.date > post2.frontmatter.date ? '-1' : '1',
+  );
 }
