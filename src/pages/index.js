@@ -50,61 +50,59 @@ const MUSIC_BGS = [
 const Background = ({viewing}) => {
   const backgroundSrc =
     viewing !== 'landing' ? randPickNew(ITEMS[viewing]) : null;
-  const bg = backgroundSrc ? (
-    ['mp4'].includes(backgroundSrc.split('.').slice(-1)[0]) ? (
-      <div>
-        <video
-          className="visualBg"
-          src={backgroundSrc}
-          type="video/mp4"
-          preload="auto"
-          loop
-          playsInline
-          autoPlay
-        />
-        <style jsx>{`
-          div {
-            position: fixed;
-            top: 20vh;
-            left: 20vw;
-            width: 60vw;
-            height: 60vh;
-            overflow: visible;
-          }
-          .hidden {
-            display: none;
-          }
-          .visualBg {
-            object-fit: cover;
-            width: 100%;
-          }
-        `}</style>
-      </div>
-    ) : (
-      <div>
-        <img src={backgroundSrc} className="visualBg" />
-        <style jsx>{`
-          div {
-            position: fixed;
-            top: 20vh;
-            left: 20vw;
-            width: 60vw;
-            height: 60vh;
-            overflow: visible;
-          }
-          .hidden {
-            display: none;
-          }
-          .visualBg {
-            object-fit: cover;
-            width: 100%;
-          }
-        `}</style>
-      </div>
-    )
-  ) : null;
+  const bg = ['mp4'].includes(backgroundSrc.split('.').slice(-1)[0]) ? (
+    <div>
+      <video
+        className="visualBg"
+        src={backgroundSrc}
+        type="video/mp4"
+        preload="auto"
+        loop
+        playsInline
+        autoPlay
+      />
+      <style jsx>{`
+        div {
+          position: fixed;
+          top: 20vh;
+          left: 20vw;
+          width: 60vw;
+          height: 60vh;
+          overflow: visible;
+        }
+        .hidden {
+          display: none;
+        }
+        .visualBg {
+          object-fit: cover;
+          width: 100%;
+        }
+      `}</style>
+    </div>
+  ) : (
+    <div>
+      <img src={backgroundSrc} className="visualBg" />
+      <style jsx>{`
+        div {
+          position: fixed;
+          top: 20vh;
+          left: 20vw;
+          width: 60vw;
+          height: 60vh;
+          overflow: visible;
+        }
+        .hidden {
+          display: none;
+        }
+        .visualBg {
+          object-fit: cover;
+          width: 100%;
+        }
+      `}</style>
+    </div>
+  );
 
-  return bg;
+  return backgroundSrc ? bg : null;
 };
 
 export default class Index extends React.Component {

@@ -1,13 +1,11 @@
-import {useState, useEffect, useMemo} from 'react';
 import {useRouter} from 'next/router';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
-import {useForm, usePlugins} from 'tinacms';
+import {usePlugins} from 'tinacms';
 import {MarkdownFieldPlugin} from 'react-tinacms-editor';
 import {markdownForm} from 'next-tinacms-markdown';
 import ReactMarkdown from 'react-markdown';
 import {getPostBySlug, getAllPosts} from '../../lib/api';
-import markdownToHtml from '../../lib/markdownToHtml';
 import Layout from '../../components/Layout';
 import DateFormatter from '../../components/DateFormatter';
 
