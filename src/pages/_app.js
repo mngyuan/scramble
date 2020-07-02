@@ -12,6 +12,7 @@ class MyApp extends App {
     const client = new GitClient('http://localhost:3000/___tina');
 
     this.cms = new TinaCMS({
+      enabled: process.env.NODE_ENV !== 'production',
       apis: {
         git: client,
       },
