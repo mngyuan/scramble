@@ -24,18 +24,21 @@ const okf = (o) => Object.keys(o).filter((k) => o[k]);
 const classNames = (o) => okf(o).join(' ');
 
 const ITEMS = {
-  freelance: [],
+  freelance: ['/media/heredia-demo.mp4', '/media/KYLIN-excerpt.mp4'],
   'graphic design': [
-    'media/DREAMING excerpt.jpeg',
+    '/media/DREAMING excerpt.jpeg',
     '/media/scan.jpg',
     '/media/how to have friends and still feel alone for web-05.png',
+    '/media/silverlake-01.png',
   ],
   'creative tech': [
-    '/media/KYLIN-excerpt.mp4',
     '/media/stand still excerpt.mp4',
     '/media/bw_6 excerpt.mp4',
     '/media/000025.jpg',
     '/media/S398787-R3-E074.jpg',
+    '/media/a5.jpg',
+    '/media/a8.jpg',
+    '/media/a6.jpg',
   ],
   software: ['/media/oww2.mp4', '/media/oww3.mp4'],
 };
@@ -49,7 +52,7 @@ const MUSIC_BGS = [
 
 const Background = ({viewing}) => {
   const backgroundSrc =
-    viewing !== 'landing' ? randPickNew(ITEMS[viewing]) : null;
+    viewing !== 'landing' ? randPickNew(ITEMS[viewing]) : '';
   const bg = ['mp4'].includes(backgroundSrc.split('.').slice(-1)[0]) ? (
     <div>
       <video
