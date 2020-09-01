@@ -164,7 +164,7 @@ export default class Index extends React.Component {
               >
                 freelance web developer
               </span>
-              <Scramble s=" and " />
+              <Scramble s=" and aspiring " />
               <span
                 className="primary"
                 onPointerDown={() => this.setState({viewing: 'creative tech'})}
