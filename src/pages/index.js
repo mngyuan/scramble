@@ -181,7 +181,7 @@ export default class Index extends React.Component {
                 onPointerDown={() => this.setState({viewing: 'creative tech'})}
                 onPointerOut={() => this.setState({viewing: 'landing'})}
               >
-                design technologist
+                creative technologist
               </span>
               <Scramble s="." />
             </div>
@@ -240,13 +240,23 @@ export default class Index extends React.Component {
             color: white;
             background: blue;
           }
+
+          /*
+          @media (prefers-color-scheme: dark) {
+            a {
+              color: ${this.state.viewing === 'landing' ? 'blue' : 'black'};
+              border-bottom: 2px solid
+                ${this.state.viewing === 'landing' ? 'blue' : 'black'};
+            }
+          }
+          */
         `}</style>
         <style jsx global>
           {`
             html {
-              background: ${this.state.viewing === 'landing'
-                ? DEFAULT_BG
-                : PRIMARY_COLOR};
+              ${this.state.viewing !== 'landing'
+                ? `background: ${PRIMARY_COLOR};`
+                : ''}
             }
           `}
         </style>
