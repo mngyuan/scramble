@@ -2,8 +2,8 @@ import {useRouter} from 'next/router';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 import {usePlugins} from 'tinacms';
-import {MarkdownFieldPlugin} from 'react-tinacms-editor';
-import {markdownForm} from 'next-tinacms-markdown';
+//import {MarkdownFieldPlugin} from 'react-tinacms-editor';
+//import {markdownForm} from 'next-tinacms-markdown';
 import ReactMarkdown from 'react-markdown';
 import {getPostBySlug, getAllPosts} from '../../lib/api';
 import Layout from '../../components/Layout';
@@ -13,7 +13,7 @@ import markdownStyles from './markdown-styles.module.css';
 
 function Post({markdownFile}) {
   const router = useRouter();
-  usePlugins([MarkdownFieldPlugin]);
+  //usePlugins([MarkdownFieldPlugin]);
 
   if (!router.isFallback && !markdownFile?.frontmatter?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -42,7 +42,8 @@ function Post({markdownFile}) {
 
 const formOptions = {};
 
-export default markdownForm(Post, formOptions);
+//export default markdownForm(Post, formOptions);
+export default Post;
 
 export async function getStaticProps({params}) {
   const markdownFile = await getPostBySlug(params.slug);
