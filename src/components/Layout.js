@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import {PRIMARY_COLOR, DEFAULT_BG} from '../const';
+import {PRIMARY_COLOR, DEFAULT_BG, DARKMODE_BG} from '../const';
 
 const Layout = ({children}) => (
   <>
@@ -36,6 +36,7 @@ const Layout = ({children}) => (
       html {
         font-family: 'Space Mono', 'Noto Sans Mono CJK SC', monospace;
         background: ${DEFAULT_BG};
+        color: black;
       }
 
       ::selection {
@@ -48,6 +49,18 @@ const Layout = ({children}) => (
         margin: 0 auto;
         width: 80vw;
       }
+
+      /*
+      @media (prefers-color-scheme: dark) {
+        html {
+          background: ${DARKMODE_BG};
+          color: white;
+        }
+        ::selection {
+          color: black;
+        }
+      }
+      */
 
       @media screen and (min-width: 640px) {
         .centered {
