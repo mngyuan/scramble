@@ -44,9 +44,16 @@ const Layout = ({children}) => (
       }
 
       .centered {
-        padding-top: 24vh;
+        padding-top: 14vh;
         margin: 0 auto;
-        width: 76vw;
+        width: 80vw;
+      }
+
+      @media screen and (min-width: 640px) {
+        .centered {
+          padding-top: 24vh;
+          width: 64vw;
+        }
       }
     `}</style>
   </>
