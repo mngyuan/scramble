@@ -24,7 +24,11 @@ const okf = (o) => Object.keys(o).filter((k) => o[k]);
 const classNames = (o) => okf(o).join(' ');
 
 const ITEMS = {
-  freelance: ['/media/heredia-demo.mp4', '/media/KYLIN-excerpt.mp4'],
+  freelance: [
+    '/media/heredia-demo.mp4',
+    '/media/oww2.mp4',
+    '/media/ror2handbook demo.mov',
+  ],
   'graphic design': [
     '/media/DREAMING excerpt.jpeg',
     '/media/scan.jpg',
@@ -32,15 +36,22 @@ const ITEMS = {
     '/media/silverlake-01.png',
   ],
   'creative tech': [
+    '/media/20-05 ocean pillars.mov',
+    '/media/20-07 columns cuts.mov',
     '/media/stand still excerpt.mp4',
     '/media/bw_6 excerpt.mp4',
-    '/media/000025.jpg',
-    '/media/S398787-R3-E074.jpg',
     '/media/a5.jpg',
     '/media/a8.jpg',
     '/media/a6.jpg',
+    '/media/KYLIN-excerpt.mp4',
   ],
-  software: ['/media/oww2.mp4', '/media/oww3.mp4'],
+  software: [
+    '/media/oww3.mp4',
+    '/media/heredia-demo.mp4',
+    '/media/oww2.mp4',
+    '/media/ror2handbook demo.mov',
+  ],
+  photography: ['/media/000025.jpg', '/media/S398787-R3-E074.jpg'],
 };
 const MUSIC_BGS = [
   '/media/first.mp3',
@@ -53,7 +64,7 @@ const MUSIC_BGS = [
 const Background = ({viewing}) => {
   const backgroundSrc =
     viewing !== 'landing' ? randPickNew(ITEMS[viewing]) : '';
-  const bg = ['mp4'].includes(backgroundSrc.split('.').slice(-1)[0]) ? (
+  const bg = ['mp4', 'mov'].includes(backgroundSrc.split('.').slice(-1)[0]) ? (
     <div>
       <video
         className="visualBg"
@@ -131,12 +142,12 @@ export default class Index extends React.Component {
                 rel="preload"
                 href={src}
                 as={
-                  ['mp4'].includes(src.split('.').slice(-1)[0])
+                  ['mp4', 'mov'].includes(src.split('.').slice(-1)[0])
                     ? 'video'
                     : 'image'
                 }
                 type={
-                  ['mp4'].includes(src.split('.').slice(-1)[0])
+                  ['mp4', 'mov'].includes(src.split('.').slice(-1)[0])
                     ? 'video/mp4'
                     : 'image/jpeg'
                 }
@@ -162,29 +173,29 @@ export default class Index extends React.Component {
                 onPointerDown={() => this.setState({viewing: 'freelance'})}
                 onPointerOut={() => this.setState({viewing: 'landing'})}
               >
-                freelance web developer
+                freelance developer
               </span>
-              <Scramble s=" and aspiring " />
+              <Scramble s=" and " />
               <span
                 className="primary"
                 onPointerDown={() => this.setState({viewing: 'creative tech'})}
                 onPointerOut={() => this.setState({viewing: 'landing'})}
               >
-                creative technologist
+                design technologist
               </span>
               <Scramble s="." />
             </div>
             <br />
-            <Scramble s="I use my Chinese name, MNGYUAN, for my work. It means dream far." />
+            <Scramble s="I use my Chinese name, MNGYUAN, for my work. It means DREAM FAR." />
             <br />
             <div delayInit={1200}>
-              <Scramble s="I'm passionate about creating expressive & empathetic digital experiences, and harnessing novel tech to do so. In my personal time I'm currently investigating ways to creative concious and thoughtful art at the intersection of " />
+              <Scramble s="I'm passionate about creating expressive & empathetic digital experiences, and harnessing novel tech to do so. I'm currently trying to create concious and thoughtful work combining " />
               <span
                 className="primary"
                 onPointerDown={() => this.setState({viewing: 'graphic design'})}
                 onPointerOut={() => this.setState({viewing: 'landing'})}
               >
-                graphic design
+                striking visual design
               </span>
               <Scramble s=" and " />
               <span
