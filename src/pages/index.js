@@ -186,7 +186,7 @@ export default class Index extends React.Component {
               <Scramble s="." />
             </div>
             <br />
-            <Scramble s="I use my Chinese name, MNGYUAN, for my work. It means DREAM FAR." />
+            <Scramble s="I use my Chinese name, 李夢遠 MNGYUAN, for my work. It means DREAM FAR." />
             <br />
             <div delayInit={1200}>
               <Scramble s="I'm passionate about creating expressive & empathetic digital experiences, and harnessing novel tech to do so. I'm currently trying to create concious and thoughtful work combining " />

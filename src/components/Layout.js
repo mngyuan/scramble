@@ -5,13 +5,17 @@ import {PRIMARY_COLOR, DEFAULT_BG, DARKMODE_BG} from '../const';
 const Layout = ({children}) => (
   <>
     <Head>
-      <title key="title">@mngyuan Kevin Lee</title>
+      <title key="title">Kevin Lee 李夢遠 @mngyuan</title>
       <meta
         property="og:description"
-        content="Kevin @mngyuan Lee, graphic designer and developer"
+        content="Design technologist. Currently in New York. RCA, Facebook, Cal alum"
         key="og-description"
       />
-      <meta property="og:title" content="@mngyuan Kevin Lee" key="og-title" />
+      <meta
+        property="og:title"
+        content="Kevin Lee 李夢遠 @mngyuan"
+        key="og-title"
+      />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
