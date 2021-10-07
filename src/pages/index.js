@@ -5,7 +5,7 @@ import Scramble from '../components/Scramble';
 import FadeInGroup from '../components/FadeInGroup';
 import Layout from '../components/Layout';
 
-import {PRIMARY_COLOR, DEFAULT_BG} from '../const';
+import {PRIMARY_COLOR, DEFAULT_BG, LINK_COLOR} from '../const';
 
 let randPickNew;
 (() => {
@@ -226,27 +226,31 @@ export default class Index extends React.Component {
           }
           .primary:hover {
             background: ${PRIMARY_COLOR};
-            color: white;
+            color: ${DEFAULT_BG};
             user-select: none;
           }
           a {
             display: inline-block;
-            color: ${this.state.viewing === 'landing' ? 'blue' : 'white'};
+            color: ${this.state.viewing === 'landing'
+              ? LINK_COLOR
+              : DEFAULT_BG};
             text-decoration: none;
             border-bottom: 2px solid
-              ${this.state.viewing === 'landing' ? 'blue' : 'white'};
+              ${this.state.viewing === 'landing' ? LINK_COLOR : DEFAULT_BG};
           }
           a:hover {
-            color: white;
-            background: blue;
+            color: ${DEFAULT_BG};
+            background: ${LINK_COLOR};
           }
 
           /*
           @media (prefers-color-scheme: dark) {
             a {
-              color: ${this.state.viewing === 'landing' ? 'blue' : 'black'};
+              color: ${this.state.viewing === 'landing'
+            ? LINK_COLOR
+            : DARKMODE_BG};
               border-bottom: 2px solid
-                ${this.state.viewing === 'landing' ? 'blue' : 'black'};
+                ${this.state.viewing === 'landing' ? LINK_COLOR : DARKMODE_BG};
             }
           }
           */
