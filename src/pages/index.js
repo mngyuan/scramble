@@ -5,7 +5,7 @@ import Scramble from '../components/Scramble';
 import FadeInGroup from '../components/FadeInGroup';
 import Layout from '../components/Layout';
 
-import {PRIMARY_COLOR, DEFAULT_BG, LINK_COLOR} from '../const';
+import {PRIMARY_COLOR, DEFAULT_BG, LINK_COLOR, DARKMODE_BG} from '../const';
 
 let randPickNew;
 (() => {
