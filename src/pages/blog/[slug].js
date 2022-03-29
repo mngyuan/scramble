@@ -13,6 +13,9 @@ function Post({markdownFile}) {
   if (!router.isFallback && !markdownFile?.frontmatter?.slug) {
     return <ErrorPage statusCode={404} />;
   }
+
+  const titleText = `${markdownFile.frontmatter.title} | mngyuan blog`;
+
   return (
     <Layout>
       {router.isFallback ? (
@@ -21,7 +24,15 @@ function Post({markdownFile}) {
         <>
           <article className="mb-32">
             <Head>
-              <title>{markdownFile.frontmatter.title} | mngyuan blog</title>
+              <title>{titleText}</title>
+              {markdownFile.frontmatter.excerpt ? (
+                <meta
+                  property="og:description"
+                  content={markdownFile.frontmatter.excerpt}
+                  key="og-description"
+                />
+              ) : null}
+              <meta property="og:title" content={titleText} key="og-title" />
             </Head>
             <div className="max-w-2xl mx-auto mb-4">
               <a href="../">←</a>
