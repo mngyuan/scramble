@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import 'intersection-observer';
 import Head from 'next/head';
 
