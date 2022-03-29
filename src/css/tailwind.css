@@ -1,3 +1,21 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+.markdown {
+  @apply text-lg leading-relaxed;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.markdown small {
+  /* image captions */
+  display: block;
+  margin-top: -1em;
+  margin-bottom: 2em;
+}
+
+.markdown pre {
+  white-space: pre-wrap;
+}

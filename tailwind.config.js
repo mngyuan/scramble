@@ -1,8 +1,7 @@
 module.exports = {
-  purge: [
-    './src/**/*.html',
-    './src/**/*.js',
-    './src/**/*.css',
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -19,5 +18,5 @@ module.exports = {
   variants: {
     margin: ['first', 'last'],
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

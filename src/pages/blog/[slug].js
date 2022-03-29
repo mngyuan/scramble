@@ -1,12 +1,10 @@
 import {useRouter} from 'next/router';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
-import ReactMarkdown from 'react-markdown';
+import md from 'markdown-it';
 import {getPostBySlug, getAllPosts} from '../../lib/api';
 import Layout from '../../components/Layout';
 import DateFormatter from '../../components/DateFormatter';
-
-import markdownStyles from './markdown-styles.module.css';
 
 function Post({markdownFile}) {
   const router = useRouter();
@@ -24,10 +22,18 @@ function Post({markdownFile}) {
             <Head>
               <title>{markdownFile.frontmatter.title} | mngyuan blog</title>
             </Head>
-            <h1>{markdownFile.frontmatter.title}</h1>
-            <DateFormatter dateString={markdownFile.frontmatter.date} />
-            <div className="max-w-2xl mx-auto">
-              <ReactMarkdown>{markdownFile.markdownBody}</ReactMarkdown>
+            <div className="max-w-2xl mx-auto mb-4">
+              <a href="../">←</a>
+            </div>
+            <div className="markdown prose max-w-2xl mx-auto">
+              <div className="mb-32">
+                <DateFormatter dateString={markdownFile.frontmatter.date} />
+              </div>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: md({html: true}).render(markdownFile.markdownBody),
+                }}
+              />
             </div>
           </article>
         </>
