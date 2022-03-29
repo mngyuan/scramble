@@ -1,3 +1,4 @@
+import React from 'react';
 import FadeIn from './FadeIn';
 
 const DELAY_STEP = 300;

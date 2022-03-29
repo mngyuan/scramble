@@ -1,4 +1,4 @@
-image: node:alpine
+image: node:14
 
 # Cache node modules - speeds up future builds
 cache:

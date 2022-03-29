@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 
 import {PRIMARY_COLOR, DEFAULT_BG, DARKMODE_BG} from '../const';
