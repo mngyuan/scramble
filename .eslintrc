@@ -1,19 +1,19 @@
 {
   "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": "false",
+    "babelOptions": {"configFile": "./.babelrc"}
+  },
   "extends": [
     "airbnb",
     "plugin:jest/recommended",
     "plugin:prettier/recommended",
     "prettier"
   ],
-  "plugins": [
-    "react",
-    "prettier",
-    "standard"
-  ],
+  "plugins": ["react", "prettier", "standard"],
   "rules": {
     "import/no-dynamic-require": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": [
       "error",
@@ -21,13 +21,13 @@
         "singleQuote": true,
         "trailingComma": "all",
         "bracketSpacing": false
-      },
-    ],
+      }
+    ]
   },
   "env": {
     "browser": true,
     "node": true,
-    "jest": true,
+    "jest": true
   },
   "globals": {
     "React": "writable"
