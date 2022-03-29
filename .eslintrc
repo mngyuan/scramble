@@ -2,15 +2,11 @@
   "parser": "@babel/eslint-parser",
   "extends": [
     "airbnb",
-    "plugin:flowtype/recommended",
     "plugin:jest/recommended",
     "plugin:prettier/recommended",
-    "prettier/flowtype",
-    "prettier/react",
-    "prettier/standard"
+    "prettier"
   ],
   "plugins": [
-    "flowtype",
     "react",
     "prettier",
     "standard"
