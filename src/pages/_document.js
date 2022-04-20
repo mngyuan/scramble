@@ -15,6 +15,21 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Space+Mono&display=swap"
             rel="stylesheet"
           />
+          <script
+            src="https://www.googletagmanager.com/gtag/js?id=G-27780M5WN9"
+            async
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-27780M5WN9');
+            `,
+            }}
+          />
         </Head>
         <body>
           <Main />

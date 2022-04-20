@@ -2,6 +2,7 @@ import React from 'react';
 import {useRouter} from 'next/router';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
+import Link from 'next/link';
 import md from 'markdown-it';
 import {getPostBySlug, getAllPosts} from '../../lib/api';
 import Layout from '../../components/Layout';
@@ -35,7 +36,7 @@ function Post({markdownFile}) {
               <meta property="og:title" content={titleText} key="og-title" />
             </Head>
             <div className="max-w-2xl mx-auto mb-4">
-              <a href="../">←</a>
+              <Link href="/blog">←</Link>
             </div>
             <div className="markdown prose max-w-2xl mx-auto">
               <div className="mb-32">
