@@ -214,7 +214,7 @@ export default class Index extends React.Component {
             <br />
             <br />
             <div>
-              <a href="/Kevin Lee professional resume.pdf">Resume</a>
+              <a href="/Kevin Lee CV - Autumn 2022.pdf">Resume</a>
               <Scramble s=" " />
               <a href="mailto:me@mngyuan.com">me [at] mngyuan.com</a>
             </div>
