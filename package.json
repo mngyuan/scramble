@@ -20,7 +20,7 @@
     "gray-matter": "^4.0.2",
     "intersection-observer": "^0.7.0",
     "markdown-it": "^12.3.2",
-    "next": "^11.1.2",
+    "next": "^13.1.1",
     "postcss-import": "^12.0.1",
     "prettier": "^2.0.0",
     "raw-loader": "^4.0.1",
